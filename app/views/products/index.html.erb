@@ -14,7 +14,11 @@
   </thead>
 
   <tbody>
+    <% total=0.0 %>
+    <% total_quantity=0 %>
     <% @products.each do |product| %>
+      <% total = total + product.price %>
+      <% total_quantity = total_quantity + product.stock_quantity %>
       <tr>
         <td><%= product.name %></td>
         <td><%= product.description %></td>
@@ -35,3 +39,9 @@
 <% 100.times do %>
   <p>Chunky Bacon</p>
 <% end %>
+
+
+
+<h3>Number of Products: <%= @products.size %></h3>
+<h3>Average Price of Products: <%= (total/@products.size).round(2) %></h3>
+<h3>Total quantity of Stock over all items: <%= total_quantity %></h3>
